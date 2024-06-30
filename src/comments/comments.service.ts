@@ -37,7 +37,9 @@ export class CommentsService {
 
   async getComments(getCommentsDto: GetCommentsDto) {
     console.log(process.env.DATABASE_URL)
-    const { page = 1, limit = 25, sortBy = 'createdAt', sortOrder = 'desc' } = getCommentsDto;
+    let { page = '1', limit = '25', sortBy = 'createdAt', sortOrder = 'desc' } = getCommentsDto;
+    page = parseInt(page as string)
+    limit = parseInt(limit as string)
 
     const skip = (page - 1) * limit;
 
